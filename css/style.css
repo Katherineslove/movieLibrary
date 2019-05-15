@@ -1,14 +1,89 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+body{
+    /* overflow: hidden; */
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+}
+
+.overlayContent{
+    width: 80vw;
+    height: 70vh;
+    background-color: white;
+    padding: 10px;
+    position: relative;
+}
+
+#close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px;
+    color: #2c3e50;
+    z-index: 100000000;
+}
+
+#close:hover{
+    color: #bdc3c7;
+    cursor: pointer;
+}
+
+.movieThumb:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.movieTitle {
+  position: absolute;
+  top: 5%;
+  left: 42%;
+}
+
+.movieYear{
+  position: absolute;
+  top: 13%;
+  left: 42%;
+}
+
+.movieDirectors{
+  position: absolute;
+  top: 20%;
+  left: 42%;
+}
+
+.movieBio{
+  position: absolute;
+  top: 27%;
+  left: 42%;
+  text-align: justify;
+  padding-right: 3%;
+}
+
+.movieLength{
+  position: absolute;
+  top: 51%;
+  left: 42%;
+}
+
+.badges{
+  position: absolute;
+  top: 59%;
+  left: 42%;
 }
 
 h1 {
-  color: #B53471;
+  font-family: 'Roboto Slab', serif;
 }
 
-
-h5 {
-  text-align: center;
+h2, h3{
+  font-family: 'Open Sans', sans-serif;
 }
