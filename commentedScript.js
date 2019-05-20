@@ -81,3 +81,31 @@
 //
 //     </div>
 // </div>
+
+
+// <div id="moviesList" class="row"></div>
+//
+// <div id="moviePopUp" class="overlay">
+//   <div class="overlayContent ">
+//       <div id="close">
+//           <i class="fas fa-times fa-2x"></i>
+//       </div>
+//       <div class="row h-100">
+//           <div class="col-4 h-100">
+//               <img id="posterImage" src="" alt="" class="img-fluid">
+//           </div>
+//           <div class="col-8">
+//               <h2 id="movieTitle" class="display-4"></h2>
+//               <p id="movieYear"></p>
+//               <ul id="movieDirectors" class="list-inline">
+//
+//               </ul>
+//               <p id="movieBio"></p>
+//               <p><span id="movieLength"></span></p>
+//               <div id="movieGenre">
+//
+//               </div>
+//           </div>
+//       </div>
+//   </div>
+// </div>

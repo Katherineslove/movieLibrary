@@ -121,34 +121,27 @@ var movies = [
   } //Christopher Robin
 ]
 
-// console.log(movies);
+var maxNumberOnScreen = 8;
+var numberOfPages = Math.ceil(movies.length / maxNumberOnScreen);
 
-var moviesList = document.getElementById('moviesList');
+if(numberOfPages > 1){
+    var pagination = document.getElementById('paginationMovies');
+    for (var i = 0; i < numberOfPages; i++) {
+        pagination.innerHTML += '<li class="page-item"><a class="page-link" href="#">'+(i+1)+'</a></li>';
 
-for (var i = 0; i < movies.length; i++) {
-  // console.log(movies[i]);
+
+    }
+}
+
+var max = maxNumberOnScreen;
+var min = 0;
+
+for (var i = min; i < max; i++) {
   var movie = movies[i];
 
-
-// WAY NUMBER TWO:
-
-  var genreClass = getGenreColour(movie.genre[0]);
-  // if (movie.genre[0] === 'Animation') {
-  //   genreClass = 'border-primary';
-  //
-  // } else if (movie.genre[0] === 'Adventure'){
-  //   genreClass = 'border-warning';
-  //
-  // } else if (movie.genre[0] === 'Action') {
-  //   genreClass = 'border-danger';
-  //
-  // } else {
-  //   genreClass = 'border-dark';
-  // }
-
-  var movieCard = '<div class="col-12 col-sm-6 col-md-4 mb-3 text-center">';
+  var movieCard = '<div class="col-12 col-sm-6 col-md-3 mb-3 text-center">';
     // movieCard += '<div class="movieThumb card h-100'+ genreClass +'" onclick="showMoreMovies()">';
-      movieCard += '<div class="movieThumb movieThumb2 card h-100 border-'+ genreClass +' " data-id="' + movie.id +'">';
+      movieCard += '<div class="movieThumb movieThumb2 card h-100 border-danger" data-id="' + movie.id +'">';
       movieCard += '<img src="images/posters/' + movie.poster + '"class="card-img-top" alt="">';
       movieCard += '<div class="card-body">';
       movieCard += '<h5 class="card-title">' + movie.title + "</h5>";
@@ -159,89 +152,20 @@ for (var i = 0; i < movies.length; i++) {
     movieCard += '</div>';
   movieCard += '</div>';
 
+
   moviesList.innerHTML += movieCard;
-
 }
 
-function showMoreMovie(movieNumber){
-    var singleMovie;
-    for (var i = 0; i < movies.length; i++) {
-
-        if(movies[i].id === movieNumber){
-            singleMovie = movies[i];
-            break;
-        }
-    }
-
-    document.getElementById('posterImage').src = 'images/posters/' + singleMovie.poster;
-    document.getElementById('movieTitle').innerText = singleMovie.title;
-    document.getElementById('movieYear').innerText = singleMovie.year;
-
-
-    document.getElementById('movieDirectors').innerHTML = '';
-    for (var i = 0; i < singleMovie.directors.length; i++) {
-        document.getElementById('movieDirectors').innerHTML += '<li class="list-inline-item">'+singleMovie.directors[i]+'</li>';
-    }
-
-    document.getElementById('movieBio').innerText = singleMovie.bio;
-    document.getElementById('movieLength').innerText = singleMovie.movieLength;
-
-    document.getElementById('movieGenre').innerHTML = '';
-    var genreColour;
-
-    for (var i = 0; i < singleMovie.genre.length; i++) {
-      // singleMovie.genre[i]
-      if(singleMovie.genre[i] === 'Animation') {
-        genreColour = 'badge-primary';
-      } else if (singleMovie.genre[i] === 'Action') {
-        genreColour = 'badge-secondary';
-      } else if (singleMovie.genre[i] === 'Adventure') {
-        genreColour = 'badge-warning';
-      } else {
-        genreColour = 'badge-dark';
-      }
-
-      document.getElementById('movieGenre').innerHTML += '<span class="badge '+genreColour+' mr-1">' + singleMovie.genre[i] + '</span>';
-    }
-
-
-    document.getElementById('moviePopUp').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+if (maxNumberOnScreen > movies.length) {
+    // console.log("There are not enough movies to appear on the screen");
+    showMovieThumbnails(0, movies.length);
+} else {
+  // console.log("There are too many movies to appear on one screen");
+  showMovieThumbnails(0, maxNumberOnScreen);
 }
 
-var movieThumbnails = document.getElementsByClassName('movieThumb2');
-for (var i = 0; i < movieThumbnails.length; i++) {
-    // console.log(movieThumbnails[i]);
-    // console.log(movieThumbnails[i].dataset.id);
 
-    // movieThumbnails[i].onclick = showMoreMovie;
-
-    movieThumbnails[i].onclick = function(){
-        var id = parseInt(this.dataset.id);
-        showMoreMovie(id);
-    };
-
-    // movieThumbnails[i].onclick = function(){
-    //     document.getElementById('moviePopUp').style.display = 'flex';
-    //     document.body.style.overflow = 'hidden';
-    // };
-}
-
-document.getElementById('close').onclick = function(){
-    document.getElementById('moviePopUp').style.display = 'none';
-    document.body.style.overflow = 'scroll';
-}
-
-function getGenreColour(genre) {
-  if (genre === 'Action') {
-    return 'primary';
-  } else if (genre === 'Adventure') {
-    return 'secondary';
-  } else if (genre === 'Animation') {
-    return 'danger';
-  } else if (genre === 'Family') {
-    return 'warning';
-  } else {
-    return 'dark';
-  }
+function showMovieThumbnails(start, end){
+  console.log(start);
+  console.log(end);
 }
