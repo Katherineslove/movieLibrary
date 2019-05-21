@@ -119,53 +119,47 @@ var movies = [
     movieLength: 103,
     poster: "robin.jpeg"
   } //Christopher Robin
-]
+];
 
-var maxNumberOnScreen = 8;
+var maxNumberOnScreen = 4;
 var numberOfPages = Math.ceil(movies.length / maxNumberOnScreen);
 
 if(numberOfPages > 1){
     var pagination = document.getElementById('paginationMovies');
     for (var i = 0; i < numberOfPages; i++) {
-        pagination.innerHTML += '<li class="page-item"><a class="page-link" href="#">'+(i+1)+'</a></li>';
-
-
+        pagination.innerHTML += '<li class="page-item"><a class="page-link" onclick="clickOnPageination('+(i+1)+');" href="#">'+(i+1)+'</a></li>';
     }
 }
 
-var max = maxNumberOnScreen;
-var min = 0;
-
-for (var i = min; i < max; i++) {
-  var movie = movies[i];
-
-  var movieCard = '<div class="col-12 col-sm-6 col-md-3 mb-3 text-center">';
-    // movieCard += '<div class="movieThumb card h-100'+ genreClass +'" onclick="showMoreMovies()">';
-      movieCard += '<div class="movieThumb movieThumb2 card h-100 border-danger" data-id="' + movie.id +'">';
-      movieCard += '<img src="images/posters/' + movie.poster + '"class="card-img-top" alt="">';
-      movieCard += '<div class="card-body">';
-      movieCard += '<h5 class="card-title">' + movie.title + "</h5>";
-      // movieCard += '<h5 class="card-title">' + movie.year + "</h5>";
-      // movieCard += '<h5 class="card-title">' + movie.directors + "</h5>";
-      // movieCard += '<h5 class="card-title">' + movie.bio + "</h5>";
-      movieCard += '</div>';
-    movieCard += '</div>';
-  movieCard += '</div>';
+function clickOnPageination(number) {
+  console.log("Button " + number + " clicked");
+};
 
 
-  moviesList.innerHTML += movieCard;
-}
-
-if (maxNumberOnScreen > movies.length) {
-    // console.log("There are not enough movies to appear on the screen");
+if(maxNumberOnScreen > movies.length){
+    // console.log("There are not enough movies in the database to fill the entire screen");
     showMovieThumbnails(0, movies.length);
 } else {
-  // console.log("There are too many movies to appear on one screen");
-  showMovieThumbnails(0, maxNumberOnScreen);
+    // console.log("there is more movies than the max on screen");
+    showMovieThumbnails(0, maxNumberOnScreen);
 }
 
-
 function showMovieThumbnails(start, end){
-  console.log(start);
-  console.log(end);
+  // console.log(start);
+  // console.log(end);
+
+  for (var i = start; i < end; i++) {
+        var movie = movies[i];
+
+          var movieCard = '<div class="col-12 col-sm-6 col-md-3 mb-3 text-center">';
+            movieCard += '<div class="movieThumb movieThumb2 card h-100" data-id="'+movie.id+'">';
+                movieCard += '<img src="images/posters/'+movie.poster+'" class="card-img-top" alt="">';
+                movieCard += '<div class="card-body">';
+                    movieCard += '<h5 class="card-title">'+movie.title+'</h5>';
+                movieCard += '</div>';
+            movieCard += '</div>';
+        movieCard += '</div>';
+
+        document.getElementById('moviesList').innerHTML += movieCard;
+    }
 }
