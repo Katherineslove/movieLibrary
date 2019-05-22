@@ -45,6 +45,17 @@ var movies = [
 
   {
     id: 5,
+    title: "Princess and the Frog",
+    year: 2009,
+    directors: ["John Musker, Ron Clements"],
+    bio: "Her marries well",
+    genre: ["Animation", "Family", "Fantasy", "Romance", "Fairy Tale"],
+    movieLength: 111,
+    poster: "frog.jpg"
+  }, //Ratatouille
+
+  {
+    id: 6,
     title: "Tangled",
     year: 2010,
     directors: ["Bryon Howard, Nathan Greno"],
@@ -55,7 +66,7 @@ var movies = [
   }, //Tangled
 
   {
-    id: 6,
+    id: 7,
     title: "Maleficent",
     year: 2014,
     directors: ["Robert Stromberg"],
@@ -66,7 +77,7 @@ var movies = [
   }, //Maleficent
 
   {
-    id: 7,
+    id: 8,
     title: "Inside Out",
     year: 2015,
     directors: ["Pete Docter"],
@@ -77,7 +88,7 @@ var movies = [
   }, //Inside Out
 
   {
-    id: 8,
+    id: 9,
     title: "Moana",
     year: 2016,
     directors: ["Ron Clements, John Musker"],
@@ -88,7 +99,7 @@ var movies = [
   }, //Moana
 
   {
-    id: 9,
+    id: 10,
     title: "Incredibles 2",
     year: 2018,
     directors: ["Brad Bird"],
@@ -99,7 +110,7 @@ var movies = [
   }, //Incredibles2
 
   {
-    id: 10,
+    id: 11,
     title: "A Wrinkle In Time",
     year: 2018,
     directors: ["Ava DuVernay"],
@@ -110,7 +121,7 @@ var movies = [
   }, //Wrinkle In Time
 
   {
-    id: 11,
+    id: 12,
     title: "Christopher Robin",
     year: 2018,
     directors: ["Marc Forster"],
@@ -171,5 +182,64 @@ function clickOnPageination(number) {
   }
 
   showMovieThumbnails(min, max);
+}
 
-  };
+  function showMoreMovie(movieNumber){
+      var singleMovie;
+      for (var i = 0; i < movies.length; i++) {
+
+          if(movies[i].id === movieNumber){
+              singleMovie = movies[i];
+              break;
+          }
+      }
+
+      document.getElementById('posterImage').src = 'images/posters/' + singleMovie.poster;
+      document.getElementById('movieTitle').innerText = singleMovie.title;
+      document.getElementById('movieYear').innerText = singleMovie.year;
+
+      document.getElementById('movieDirectors').innerHTML = '';
+      for (var i = 0; i < singleMovie.directors.length; i++) {
+          document.getElementById('movieDirectors').innerHTML += '<li class="list-inline-item">'+singleMovie.directors[i]+'</li>';
+      }
+
+      document.getElementById('movieBio').innerText = singleMovie.bio;
+      document.getElementById('movieLength').innerText = singleMovie.movieLength;
+
+      document.getElementById('movieGenre').innerHTML = '';
+
+      document.getElementById('moviePopUp').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+
+      }
+
+      document.getElementById('close').onclick = function(){
+        document.getElementById('moviePopUp').style.display = 'none';
+        document.body.style.overflow = 'scroll';
+      }
+
+
+      var pageTabs = document.getElementsByClassName('page-tab');
+      for (var i = 0; i < pageTabs.length; i++) {
+        pageTabs[i].onclick = function(){
+        for (var j = 0; j < pageTabs.length; j++) {
+            // console.log(pageTabs[j].classList.contains('active'));
+            if(pageTabs[j].classList.contains('active')){
+                pageTabs[j].classList.remove('active');
+                break;
+            }
+          }
+          if (!this.classList.contains('active')){
+              this.classList.add('active');
+          }
+              // console.log("You have clicked on a tab");
+
+              // console.log(this.classList);
+              // this.classList.add('newClass', 'secondNewClass');
+              // console.log(this.classList.contains('active'));
+              // console.log(this.classList.item(1));
+              // this.classList.remove('active');
+              // this.classList.toggle('active');
+
+      }
+}
