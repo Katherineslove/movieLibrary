@@ -131,11 +131,6 @@ if(numberOfPages > 1){
     }
 }
 
-function clickOnPageination(number) {
-  console.log("Button " + number + " clicked");
-};
-
-
 if(maxNumberOnScreen > movies.length){
     // console.log("There are not enough movies in the database to fill the entire screen");
     showMovieThumbnails(0, movies.length);
@@ -146,7 +141,8 @@ if(maxNumberOnScreen > movies.length){
 
 function showMovieThumbnails(start, end){
   // console.log(start);
-  // console.log(end);
+
+  document.getElementById('moviesList').innerHTML = '';
 
   for (var i = start; i < end; i++) {
         var movie = movies[i];
@@ -163,3 +159,17 @@ function showMovieThumbnails(start, end){
         document.getElementById('moviesList').innerHTML += movieCard;
     }
 }
+
+function clickOnPageination(number) {
+  console.log("Button " + number + " clicked");
+
+  var max = number * maxNumberOnScreen;
+  var min = max - maxNumberOnScreen;
+
+  if (movies.length < max) {
+    max = movies.length;
+  }
+
+  showMovieThumbnails(min, max);
+
+  };
