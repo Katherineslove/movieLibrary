@@ -134,6 +134,7 @@ var movies = [
 
 var maxNumberOnScreen = 4;
 var numberOfPages = Math.ceil(movies.length / maxNumberOnScreen);
+var currentTab = 'Movies';
 
 if(numberOfPages > 1){
     var pagination = document.getElementById('paginationMovies');
@@ -245,5 +246,10 @@ function clickOnPageination(number) {
 }
 
 function changeTab(tabName){
-  console.log(tabName);
+    if(currentTab === tabName){
+        console.log('you are still on the same page');
+    } else {
+        currentTab = tabName;
+        console.log('Change to the ' + tabName + ' page')
+    }
 }
