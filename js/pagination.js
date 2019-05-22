@@ -232,7 +232,7 @@ function clickOnPageination(number) {
           if (!this.classList.contains('active')){
               this.classList.add('active');
           }
-              // console.log("You have clicked on a tab");
+              changeTab(this.innerText);
 
               // console.log(this.classList);
               // this.classList.add('newClass', 'secondNewClass');
@@ -242,4 +242,8 @@ function clickOnPageination(number) {
               // this.classList.toggle('active');
 
       }
+}
+
+function changeTab(tabName){
+  console.log(tabName);
 }
