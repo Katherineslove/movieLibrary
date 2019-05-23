@@ -32,16 +32,23 @@
             </div>
         </div>
 
-        <div id="moviesList" class="row"></div>
-        <div class="row">
-            <div class="col">
-                <nav aria-label="Page navigation example">
-                    <ul id="paginationMovies" class="pagination justify-content-end">
-                        <!-- <li class="page-item"><a class="page-link" href="#">1</a></li> -->
-                    </ul>
-                </nav>
+        <div id="pageContainer">
+
+            <div id="moviesList" class="row"></div>
+            <div class="row">
+                <div class="col">
+                    <nav>
+                        <ul id="paginationMovies" class="pagination justify-content-end"></ul>
+                    </nav>
+                </div>
             </div>
         </div>
+
+        <button onclick="clickSort()">ASC</button>
+
+        <p id="demo"></p>
+
+
     </div>
 
 
@@ -53,37 +60,36 @@
 
 
 
+            <div id="moviePopUp" class="overlay">
+              <div class="overlayContent ">
+                  <div id="close">
+                      <i class="fas fa-times fa-2x"></i>
+                  </div>
+                  <div class="row h-100">
+                      <div class="col-4 h-100">
+                          <img id="posterImage" src="" alt="" class="img-fluid">
+                      </div>
+                      <div class="col-8">
+                          <h2 id="movieTitle" class="display-4"></h2>
+                          <p id="movieYear"></p>
+                          <ul id="movieDirectors" class="list-inline">
 
-          <div id="moviePopUp" class="overlay">
-            <div class="overlayContent ">
-                <div id="close">
-                    <i class="fas fa-times fa-2x"></i>
-                </div>
-                <div class="row h-100">
-                    <div class="col-4 h-100">
-                        <img id="posterImage" src="" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-8">
-                        <h2 id="movieTitle" class="display-4"></h2>
-                        <p id="movieYear"></p>
-                        <ul id="movieDirectors" class="list-inline">
+                          </ul>
+                          <p id="movieBio"></p>
+                          <p><span id="movieLength"></span></p>
+                          <div id="movieGenre">
 
-                        </ul>
-                        <p id="movieBio"></p>
-                        <p><span id="movieLength"></span></p>
-                        <div id="movieGenre">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
-      </div>
 
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-       <script src="js/bootstrap.js"></script>
-       <!-- <script src="js/script.js"></script> -->
-       <script src="js/pagination.js"></script>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+         <script src="js/bootstrap.js"></script>
+         <!-- <script src="js/script.js"></script> -->
+         <script src="js/pagination.js"></script>
   </body>
 </html>

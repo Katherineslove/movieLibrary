@@ -133,29 +133,49 @@ var movies = [
 ];
 
 var maxNumberOnScreen = 4;
-var numberOfPages = Math.ceil(movies.length / maxNumberOnScreen);
 var currentTab = 'Movies';
+var pageContainer = document.getElementById('pageContainer');
 
-if(numberOfPages > 1){
-    var pagination = document.getElementById('paginationMovies');
-    for (var i = 0; i < numberOfPages; i++) {
-        pagination.innerHTML += '<li class="page-item"><a class="page-link" onclick="clickOnPageination('+(i+1)+');" href="#">'+(i+1)+'</a></li>';
-    }
+
+function showMovies(){
+  pageContainer.innerHTML = '<div id="moviesList" class="row"></div>';
+  pageContainer.innerHTML += '<div class="row"><div class="col"><nav><ul id="paginationMovies" class="pagination justify-content-end"></ul></nav></div></div>';
+  var numberOfPages = Math.ceil(movies.length / maxNumberOnScreen);
+  if(numberOfPages > 1){
+      var pagination = document.getElementById('paginationMovies');
+      for (var i = 0; i < numberOfPages; i++) {
+          pagination.innerHTML += '<li class="page-item"><a class="page-link" onclick="clickOnPageination('+(i+1)+');" href="#">'+(i+1)+'</a></li>';
+      }
+  }
+
+  if(maxNumberOnScreen > movies.length){
+      showMovieThumbnails(0, movies.length);
+  } else {
+      showMovieThumbnails(0, maxNumberOnScreen);
+  }
+
 }
 
-if(maxNumberOnScreen > movies.length){
-    // console.log("There are not enough movies in the database to fill the entire screen");
-    showMovieThumbnails(0, movies.length);
-} else {
-    // console.log("there is more movies than the max on screen");
-    showMovieThumbnails(0, maxNumberOnScreen);
+showMovies();
+
+function clickSort() {
+  console.log("You have clicked the button");
+
+}
+
+function clickOnPagination(num){
+    console.log('page clicked on ' + num);
+    var max = num * maxNumberOnScreen;
+    var min = max - maxNumberOnScreen;
+
+    if(max > movies.length){
+        max = movies.length;
+    }
+    showMovieThumbnails(min, max);
 }
 
 function showMovieThumbnails(start, end){
-  // console.log(start);
-
   document.getElementById('moviesList').innerHTML = '';
-
   for (var i = start; i < end; i++) {
         var movie = movies[i];
 
@@ -169,6 +189,14 @@ function showMovieThumbnails(start, end){
         movieCard += '</div>';
 
         document.getElementById('moviesList').innerHTML += movieCard;
+    }
+
+    var movieThumbnails = document.getElementsByClassName('movieThumb2');
+    for (var i = 0; i < movieThumbnails.length; i++) {
+        movieThumbnails[i].onclick = function(){
+            var id = parseInt(this.dataset.id);
+            showMoreMovie(id);
+        };
     }
 }
 
@@ -250,6 +278,17 @@ function changeTab(tabName){
         console.log('you are still on the same page');
     } else {
         currentTab = tabName;
-        console.log('Change to the ' + tabName + ' page')
+        pageContainer.innerHTML = '';
+        if (tabName === 'Directors') {
+            showDirectors();
+        } else if (tabName === 'Movies'){
+
+          showMovies();
+        }
     }
+}
+
+function showDirectors(){
+    console.log("show directors");
+    pageContainer.innerHTML = '<div class="row"><div class="col"><h1 class="display-4">Directors</h1></div></div>';
 }
